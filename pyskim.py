@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 
 # Ask the user for a URL to scrape.
-url = raw_input("Enter a website to extract the URL's from: ")
+url = raw_input("Please enter a website to extract the URLs from: ")
 
 # Combine the http request and the user's input, and assign it to r.
 r  = requests.get("http://" + url)
@@ -23,6 +23,8 @@ file = open("all_the_links.txt", "w")
 #url_list = []
 
 # Using the Beautiful Soup-ed input, find all the 'a' elements, then get and print the link associated with each one.
+print "Alright, here are all the links:\n"
+
 for link in soup.find_all('a'):
 	print link.get('href')
 	#url_list.append(str(link.get('href')))
@@ -31,4 +33,5 @@ for link in soup.find_all('a'):
 	#print url_list
 
 # Once done, close the file containing the links.
+print "\nAll done. The links I found are in a file named all_the_links.txt."
 file.close()
