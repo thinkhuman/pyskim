@@ -7,6 +7,7 @@ import requests
 
 # Ask the user for a URL to scrape.
 url = raw_input("Please enter a website to extract the URLs from: ")
+results_file = raw_input("Please enter a name for the file where we'll store the results: ")
 
 # Combine the http request and the user's input, and assign it to r.
 r  = requests.get("http://" + url)
@@ -18,7 +19,7 @@ data = r.text
 soup = BeautifulSoup(data)
 
 # Open a text file to write all the links to.
-file = open("all_the_links.txt", "w")
+file = open(results_file, "w")
 
 #url_list = []
 
@@ -33,5 +34,5 @@ for link in soup.find_all('a'):
 	#print url_list
 
 # Once done, close the file containing the links.
-print "\nAll done. The links I found are in a file named all_the_links.txt."
+print ("\nAll done. The links I found are in a file named " + results_file + ".")
 file.close()
